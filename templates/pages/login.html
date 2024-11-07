@@ -1,0 +1,34 @@
+{% extends 'page-components/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <head>
+    <title>Login</title>
+  </head>
+  {% include 'page-components/navbar.html' %}
+  <body>
+    {% include 'page-components/messages.html' %}
+    <div class="container">
+      <h1>Login</h1>
+      <form method="POST">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col">
+            <div class="form-group mb-1">
+              {{ login_form.username|as_crispy_field }}
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group mb-2">
+              {{ login_form.password|as_crispy_field }}
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+      <p class="text-center">Don't have an account? <a href="{% url 'main:register' %}">Create an account</a>.</p>
+    </div>
+    {% include 'page-components/footer.html' %}
+  </body>
+{% endblock %}

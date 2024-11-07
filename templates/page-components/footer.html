@@ -1,0 +1,41 @@
+{% extends 'page-components/base.html' %}
+{% block footer %}
+  <div id='footer' class="pb-5">
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-4 d-flex justify-content-end align-items-end">
+            <a href="mailto:contact@der.wind"  target="_blank" rel="noopener noreferrer">
+              <i class="fa fa-envelope fa-lg"></i>
+            </a>
+          </div>
+          <div class="col-4 d-flex justify-content-center align-items-center">
+            <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">
+              <i class="fa fa-linkedin fa-lg"></i>
+            </a>
+          </div>
+          <div class="col-4 d-flex justify-content-start align-items-start">
+            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-x-twitter fa-lg"></i>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="extra-links mx-auto col-lg-12 col-md-8 col-sm-12">
+            <h6 class="text-uppercase font-weight-bold text-center">Additional Information</h6>
+            <p class="text-center">We value feedback, so please
+              {% if user.is_authenticated %}
+                <a href="{% url 'main:contact_support' %}">contact us</a>
+              {% else %}
+                <a href="{% url 'main:contact' %}">contact us</a>
+              {% endif %}
+              with any questions or feedback.</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <small>2023 © blueteam052.cfc.local</small>
+      </div>
+    </footer>
+  </div>
+{% endblock footer %}

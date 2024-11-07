@@ -1,0 +1,25 @@
+{% extends 'page-components/base.html' %}
+{% load static %}
+
+{% block content %}
+  <head>
+    <title>Admin Panel</title>
+  </head>
+  {% include 'page-components/navbar.html' %}
+  {% include 'page-components/messages.html' %}
+  <body>
+    <div class="container">
+        <h1 class="text-center">Admin Panel</h1>
+        <div class="row">
+            <a href="/admin-portal/dashboard">Dashboard</a>
+        </div>
+        <div class="row">
+            <a href="/admin-portal/contact_submissions">Contact Submissions</a>
+        </div>
+        <div class="row">
+            <a href="/admin-portal/registered_users">Registered Users</a>
+        </div>
+    </div>
+    {% include 'page-components/footer.html' %}
+  </body>
+{% endblock %}

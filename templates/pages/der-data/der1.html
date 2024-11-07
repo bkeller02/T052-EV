@@ -1,0 +1,20 @@
+{% extends 'page-components/base.html' %}
+{% load static %}
+
+{% block content %}
+  <head>
+    <title>DER1</title>
+  </head>
+  {% include 'page-components/navbar.html' %}
+  <body>
+    <h1 class="text-center">DER1 Data</h1>
+    <div class="container">
+        <div class="row ">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 text-center mx-auto" href="{% url 'main:der1' %}">
+                <img class="image-fluid" width="250" src="{% static 'images/data/DER1.png' %}">
+            </div>
+        </div>
+    </div>
+    {% include 'page-components/footer.html' %}
+  </body>
+{% endblock %}

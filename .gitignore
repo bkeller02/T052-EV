@@ -1,0 +1,6 @@
+DERSITE/__pycache__
+main/__pycache__
+venv/
+*.pyc
+
+media/contact/*

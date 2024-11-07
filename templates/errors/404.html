@@ -1,0 +1,18 @@
+{% extends 'page-components/base.html' %}
+{% block content %}
+  <head>
+    <title>Not Found</title>
+  </head>
+  {% include 'page-components/navbar.html' %}
+  <div id='content'>
+    <div class="container text-center justify-content-center col-md-12 col-sm-12">
+      <h1
+        class="m-3"
+      >
+        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        Page does not exist.
+      </h1>
+    </div>
+  </div>
+  {% include 'page-components/footer.html' %}
+{% endblock content %}

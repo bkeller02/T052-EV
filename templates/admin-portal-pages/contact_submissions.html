@@ -1,0 +1,46 @@
+{% extends 'page-components/base.html' %}
+{% load static %}
+
+{% block content %}
+  <head>
+    <title>Contact Submissions</title>
+  </head>
+  {% include 'page-components/navbar.html' %}
+  {% include 'page-components/messages.html' %}
+  <body>
+    <h1 class="text-center">Contact Submissions</h1>
+    {% if not submissions %}
+      <p class="text-center">There are no contact submssions currently.</p>
+    {% else %}
+      <table class="table table-bordered table-hover table-sm w-75 mx-auto">
+        <thead class="thead-dark">
+          <th scope="col">Username</th>
+          <th scope="col">Email</th>
+          <th scope="col">Subject</th>
+          <th scope="col">Message</th>
+          <th scope="col">File Uploaded</th>
+        </thead>
+        <tbody>
+          {% for submission in submissions %}
+            <tr>
+              <th scope="row">{{ submission.username }}</td>
+              <td>{{ submission.email }}</td>
+              <td>{{ submission.subject }}</td>
+              <td>{{ submission.message }}</td>
+              <td>
+                {% if submission.file_upload %}
+                  <a href="/media/{{ submission.file_upload }}">
+                    {{ submission.file_upload }}  
+                  </a>
+                {% else %}
+                  None
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+    {% include 'page-components/footer.html' %}
+  </body>
+{% endblock %}

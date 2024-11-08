@@ -3,12 +3,12 @@
 
 {% block content %}
   <head>
-    <title>DER Home</title>
+    <title>EV Home</title>
   </head>
   <body>
     <div class="container my-5">
-      <h1 class="text-center mb-5">Who We Are</h1>
-      <p class="text-center mb-3">
+      <h1 style="color: #b59410" class="text-center mb-5">Who We Are</h1>
+      <p class="text-center mb-3" style="color: #b59410">
         At Energia Ventosa, we harness the relentless power of the wind to fuel our vast empire of energy consumption.
         Our turbines, tirelessly spinning, generate electricty that powers everything from bustling cities to remote outposts. 
         While we boast about our green credentials and renewable energy, the truth is less innocent.
@@ -16,67 +16,19 @@
         And should our turbines ever slow, the world won't just face a temporary blacout - it will plunge into chaos, revealing the true extent of our control over the wind itself.
         The skies whisper of our grip, and in that silence, our true power becomes undeniable.
       </p>
-      <div class="row mb-2">
-        <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
-          <div class="summary card h-100">
-            <img class="image-fluid card-img-top mx-auto py-5" src="{% static 'images/solar-panel.png' %}">
-            <div class="card-body">
-              <h3 class="summary">Solar Panel Solutions</h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
-          <div class="summary card h-100">
-            <img class="image-fluid card-img-top mx-auto py-5" src="{% static 'images/battery-charge.png' %}">
-            <div class="card-body">
-              <h3>Energy Storage Solutions</h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
-          <div class="summary card h-100">
-            <img class="image-fluid card-img-top mx-auto py-5" src="{% static 'images/renewable-energy.png' %}">
-            <div class="card-body">
-              <h3>MicroGrid Development</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
-          <div class="summary card h-100">
-            <img class="image-fluid card-img-top mx-auto py-5" src="{% static 'images/wind-turbine.png' %}">
-            <div class="card-body">
-              <h3>Demand Response Programs</h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
-          <div class="summary card h-100">
-            <img class="image-fluid card-img-top mx-auto py-5" src="{% static 'images/monitor.png' %}">
-            <div class="card-body">
-              <h3>Energy Management and Monitoring</h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
-          <div class="summary card h-100">
-            <img class="image-fluid card-img-top mx-auto py-5" src="{% static 'images/power-generation.png' %}">
-            <div class="card-body">
-              <h3 class="summary">Smart Grid Integration</h3>
-            </div>
-          </div>
-        </div>
+      <div class="summary">
+        <img src="{% static 'images/Energia Ventosa (YouTube Thumbnail).png' %}" alt="Energia Ventosa">
       </div>
     </div>
   </body>
   <style>
     .summary img {
       display: block;
-      max-width: 100px;
-      height: auto;
+      width: 75vw;
+      height: auto;    
+      margin: 0 auto;  
     }
-    .summary h3, p{
+    .summary h3, p {
       text-align: center;
     }
   </style>

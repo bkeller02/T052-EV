@@ -8,6 +8,7 @@ from django.core.mail import send_mail, BadHeaderError
 from .models import ContactSupport
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
+from .models import ContactSubmission
 
 def index(request):
     """ View function for home page of site. """
@@ -20,43 +21,55 @@ def about(request):
     context = {}
     return render(request, 'pages/about.html')
 
-def der_data_page(request):
+def turbine_data_page(request):
     """ View function for displaying data page of site. """
     context = {}
-    return render(request, 'pages/der-data/data.html')
+    return render(request, 'pages/turbine-data/data.html')
 
-def der1(request):
+def turbine1(request):
 	""" View function for displaying data page of site. """
 	if request.user.is_authenticated:
-		return render(request, 'pages/der-data/der1.html')
+		return render(request, 'pages/turbine-data/turbine1.html')
 	else:
 		raise PermissionDenied()
 
-def der2(request):
+def turbine2(request):
 	""" View function for displaying data page of site. """
 	if request.user.is_authenticated:
-		return render(request, 'pages/der-data/der2.html')
+		return render(request, 'pages/turbine-data/turbine2.html')
 	else:
 		raise PermissionDenied()
 
-def der3(request):
+def turbine3(request):
 	""" View function for displaying data page of site. """
 	if request.user.is_authenticated:
-		return render(request, 'pages/der-data/der3.html')
+		return render(request, 'pages/turbine-data/turbine3.html')
 	else:
 		raise PermissionDenied()
 
-def der4(request):
+def turbine4(request):
 	""" View function for displaying data page of site. """
 	if request.user.is_authenticated:
-		return render(request, 'pages/der-data/der4.html')
+		return render(request, 'pages/turbine-data/turbine4.html')
 	else:
 		raise PermissionDenied()
+	
+def submissions_list(request):
+    submissions = ContactSubmission.objects.all().order_by('-submitted_at')
+    return render(request, "pages/submissions_list.html", {'submissions': submissions})
 
 def contact(request):
 	if request.method == 'POST':
 		form = ContactForm(request.POST)
 		if form.is_valid():
+			ContactSubmission.objects.create(
+				full_name=form.cleaned_data.get('full_name'),
+				email=form.cleaned_data.get('email'),
+				phone_number=form.cleaned_data.get('phone_number'),
+				subject=form.cleaned_data.get('subject'),
+				message=form.cleaned_data.get('message')
+			)
+			
 			subject = f"Inquiry: {form.cleaned_data.get('subject')}"
 			body = {
 				'full_name': form.cleaned_data.get('full_name'), 
@@ -71,10 +84,10 @@ def contact(request):
 				
 			except BadHeaderError:
 				messages.error(request, "Unable to send email. Please try again later.")
-			return redirect ("main:index")
+			return redirect("main:index")
 		messages.info(request, f"Could not send email: {form.errors.as_text().split('*')[2]}")
 	form = ContactForm()
-	return render(request, "pages/contact.html", {'contact_form':form})
+	return render(request, "pages/contact.html", {'contact_form': form})
 
 def contact_support(request):
 	if request.user.is_authenticated:
@@ -115,7 +128,10 @@ def admin_login(request):
 			if user is not None:
 				login(request, user)
 				messages.info(request, f"Welcome, {username}!")
-				return redirect("main:admin_panel")
+				if user.is_staff:
+					return redirect("main:admin_panel")
+				else:
+					return redirect("main:index")
 			else:
 				messages.error(request, "Invalid username or password.")
 		else:
@@ -143,30 +159,30 @@ def admin_register(request):
 
 def admin_panel(request):
 	""" View function for displaying admin portal page of site. """
-	if request.user.is_authenticated:
+	if request.user.is_authenticated and request.user.is_staff:
 		return render(request, 'admin-portal-pages/admin_panel.html')
 	else:
 		raise PermissionDenied()
 
 def dashboard(request):
 	""" View function for displaying dashboard page of site. """
-	if request.user.is_authenticated:
-		submissions = ContactSupport.objects.all()
+	if request.user.is_authenticated and request.user.is_staff:
+		submissions = ContactSubmission.objects.all()
 		users = User.objects.all().values()
 		return render(request, 'admin-portal-pages/dashboard.html', {"submissions": submissions, "users": users})
 	else:
 		raise PermissionDenied()
 
 def contact_submissions(request):
-	if request.user.is_authenticated:
-		submissions = ContactSupport.objects.all()
+	if request.user.is_authenticated and request.user.is_staff:
+		submissions = ContactSubmission.objects.all()
 		return render(request, 'admin-portal-pages/contact_submissions.html', {'submissions': submissions})
 	else:
 		raise PermissionDenied()
 
 def registered_users(request):
 	""" View function for displaying contact support page of site. """
-	if request.user.is_authenticated:
+	if request.user.is_authenticated and request.user.is_staff:
 		users = User.objects.all().values()
 		return render(request, 'admin-portal-pages/registered_users.html', {'users': users})
 	else:

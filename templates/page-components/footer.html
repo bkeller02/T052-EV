@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row">
           <div class="col-4 d-flex justify-content-end align-items-end">
-            <a href="mailto:contact@der.wind"  target="_blank" rel="noopener noreferrer">
+            <a href="mailto:contact@ventosa.energia"  target="_blank" rel="noopener noreferrer">
               <i class="fa fa-envelope fa-lg"></i>
             </a>
           </div>
@@ -22,8 +22,8 @@
         </div>
         <div class="row">
           <div class="extra-links mx-auto col-lg-12 col-md-8 col-sm-12">
-            <h6 class="text-uppercase font-weight-bold text-center">Additional Information</h6>
-            <p class="text-center">We value feedback, so please
+            <h6 class="text-uppercase font-weight-bold text-center" style="color: #b59410">Additional Information</h6>
+            <p class="text-center"style="color: #b59410">We value feedback, so please
               {% if user.is_authenticated %}
                 <a href="{% url 'main:contact_support' %}">contact us</a>
               {% else %}
@@ -33,7 +33,7 @@
           </div>
         </div>
       </div>
-      <div class="text-center">
+      <div class="text-center" style="color: #b59410">
         <small>© 2024 - Energia Ventosa</small>
       </div>
     </footer>

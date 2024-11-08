@@ -18,3 +18,14 @@ class ContactSupport(models.Model):
 
     def __str__(self):
         return self.subject
+
+class ContactSubmission(models.Model):
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone_number = models.CharField(max_length=15)
+    subject = models.CharField(max_length=200)
+    message = models.TextField()
+    submitted_at = models.DateTimeField(auto_now_add=True)  # timestamp for when the form was submitted
+
+    def __str__(self):
+        return f"{self.full_name} - {self.subject}"

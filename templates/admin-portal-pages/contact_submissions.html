@@ -14,7 +14,7 @@
     {% else %}
       <table class="table table-bordered table-hover table-sm w-75 mx-auto">
         <thead class="thead-dark">
-          <th scope="col">Username</th>
+          <th scope="col">Full Name</th>
           <th scope="col">Email</th>
           <th scope="col">Subject</th>
           <th scope="col">Message</th>
@@ -23,7 +23,7 @@
         <tbody>
           {% for submission in submissions %}
             <tr>
-              <th scope="row">{{ submission.username }}</td>
+              <th scope="row">{{ submission.full_name }}</td>
               <td>{{ submission.email }}</td>
               <td>{{ submission.subject }}</td>
               <td>{{ submission.message }}</td>

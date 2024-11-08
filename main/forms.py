@@ -24,14 +24,13 @@ class NewAdminForm(UserCreationForm):
 class ContactForm(forms.Form):
 	full_name = forms.CharField(max_length=100)
 	email = forms.EmailField(required=True, max_length=150)
-	phone_number = PhoneNumberField()
+	phone_number = forms.CharField(max_length=15)
 	subject = forms.CharField(max_length=100)
 	message = forms.CharField(widget=forms.Textarea, max_length=2000)
 	file_upload = forms.FileField(required=False)
 
 	def __init__(self, *args, **kwargs):
 		super(ContactForm, self).__init__(*args, **kwargs)
-		self.fields['phone_number'].help_text = "Enter a valid phone number (e.g. +12125552368)."
 
 class ContactSupportForm(ModelForm):
 	class Meta:
